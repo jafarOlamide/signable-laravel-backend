@@ -13,12 +13,6 @@ A local installation of the following services is required.
 
 ## Starting The App
 
-Run the following command
-
-Explore Laravel Herd to simulate production deployment or use
-
-    php artisan serve
-
 Generate App Key
 
     php artisan key:generate
@@ -30,6 +24,6 @@ Run database migrations and seeders to populate DB
 
     php artisan db:seed
 
-## API Documentation
+Explore Laravel Herd to simulate production deployment or use
 
-To test this app locally on your PC after completing the above, visit the url below :
+    php artisan serve
