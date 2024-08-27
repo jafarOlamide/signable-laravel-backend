@@ -43,6 +43,8 @@ class MessageController extends Controller
 
         $loaded_message = $stored_message->load('sender');
 
+        Log::info($request->message);
+
         broadcast(new MessageSent($loaded_message));
 
         return response()->noContent();
