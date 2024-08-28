@@ -15,7 +15,6 @@ return new class extends Migration
             $table->ulid('id')->primary();
             $table->ulid('sender_id');
             $table->foreign('sender_id')->references('id')->on('users');
-
             $table->text('message');
             $table->timestamps();
             $table->softDeletes();
