@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('messages', function (Blueprint $table) {
-            //
+            $table->ulid('channel_id');
+            $table->foreign('channel_id')->references('id')->on('channels');
         });
     }
 
@@ -22,7 +23,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('messages', function (Blueprint $table) {
-            //
+            $table->dropForeign('channel_id');
+            $table->dropColumn('channel_id');
         });
     }
 };

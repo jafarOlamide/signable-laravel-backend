@@ -15,6 +15,7 @@ return new class extends Migration
             $table->ulid('id')->primary();
             $table->string('name');
             $table->longText('description');
+            $table->integer('total_member_count');
             $table->timestamps();
         });
     }
