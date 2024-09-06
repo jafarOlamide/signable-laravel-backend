@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('messages', function (Blueprint $table) {
-            $table->ulid('channel_id');
+            $table->ulid('channel_id')->nullable();
             $table->foreign('channel_id')->references('id')->on('channels');
         });
     }

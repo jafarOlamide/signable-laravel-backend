@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LoginRequest;
 use App\Traits\AuthenticatesUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,7 +13,7 @@ class LoginController extends Controller
 {
     use AuthenticatesUser;
 
-    public function __invoke(Request $request)
+    public function __invoke(LoginRequest $request)
     {
         $credentials = [
             'username' => $request->input('username'),
