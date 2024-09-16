@@ -21,9 +21,4 @@ class Message extends Model
     {
         return $this->belongsTo(User::class);
     }
-
-    public function getCreatedAtAttribute($value)
-    {
-        return Carbon::parse($value)->format('H:i, d/m/Y');
-    }
 }

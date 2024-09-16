@@ -7,7 +7,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/login', LoginController::class)->name('login');
 
-Route::prefix('messages')->middleware(['auth:sanctum'])->group(function () {
-    Route::post('/', [MessageController::class, 'store'])->name('messages.store');
-    Route::get('/', [MessageController::class, 'index'])->name('messages.index');
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::prefix('messages')->group(function () {
+        Route::post('/', [MessageController::class, 'store'])->name('messages.store');
+        Route::get('/', [MessageController::class, 'index'])->name('messages.index');
+    });
 });

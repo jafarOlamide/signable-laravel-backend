@@ -14,9 +14,9 @@ class MessageRepository implements MessageRepositoryInterface
         $this->model = $model;
     }
 
-    public function all()
+    public function generalChatMessages()
     {
-        return $this->model->with('sender')->orderBy('created_at', 'ASC')->get();
+        return Message::where('channel_id', null)->with('sender')->orderBy('created_at', 'ASC')->get();
     }
 
     public function create(array $data)

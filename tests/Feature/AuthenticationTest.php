@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
 
 class AuthenticationTest extends TestCase
@@ -20,13 +21,12 @@ class AuthenticationTest extends TestCase
 
     public function test_authenticated_users_can_access_protected_route()
     {
-        // Create a user
-        $user = User::factory()->create();
-
-        $this->actingAs($user, 'sanctum');
+        Sanctum::actingAs(
+            User::factory()->create(),
+        );
 
         $response = $this->getJson(route('messages.index'));
 
-        $response->assertStatus(204);
+        $response->assertStatus(200);
     }
 }
