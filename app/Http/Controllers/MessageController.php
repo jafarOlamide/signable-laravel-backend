@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\GeneralChatMessageSent;
 use App\Events\MessageSent;
 use App\Http\Requests\StoreMessageRequest;
 use App\Http\Resources\MessagesResource;
 use App\Interfaces\MessageRepositoryInterface;
-use App\Interfaces\UserRepositoryInterface;
-use App\Models\Message;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
@@ -44,7 +43,9 @@ class MessageController extends Controller
 
         $loaded_message = $stored_message->load('sender');
 
-        broadcast(new MessageSent($loaded_message));
+        // broadcast(new MessageSent($loaded_message));
+        broadcast(new GeneralChatMessageSent($loaded_message));
+
 
         return response()->noContent();
     }
