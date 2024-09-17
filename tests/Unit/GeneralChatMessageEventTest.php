@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 class GeneralChatMessageEventTest extends TestCase
 {
-    public function test_event_constructor_sets_message_property()
+    public function test_constructor_sets_message_model_as_property()
     {
         $message = new Message();
         $event = new GeneralChatMessageSent($message);
@@ -18,7 +18,7 @@ class GeneralChatMessageEventTest extends TestCase
         $this->assertSame($message, $event->message);
     }
 
-    public function test_broadcast_on_returns_correct_channel()
+    public function test_broadcast_on_returns_correct_channel_route()
     {
         $message = new Message();
         $event = new GeneralChatMessageSent($message);
