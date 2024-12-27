@@ -17,7 +17,6 @@ class MessageController extends Controller
 
     public function __construct(MessageRepositoryInterface $messageRepository)
     {
-
         $this->messageRepository = $messageRepository;
     }
 
@@ -43,9 +42,7 @@ class MessageController extends Controller
 
         $loaded_message = $stored_message->load('sender');
 
-        // broadcast(new MessageSent($loaded_message));
         broadcast(new GeneralChatMessageSent($loaded_message));
-
 
         return response()->noContent();
     }

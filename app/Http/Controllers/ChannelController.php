@@ -4,25 +4,29 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreChannelRequest;
 use App\Http\Requests\UpdateChannelRequest;
+use App\Http\Resources\MessagesResource;
+use App\Interfaces\ChannelRepositoryInterface;
 use App\Models\Channel;
 
 class ChannelController extends Controller
 {
+    protected $channelRepository;
+
+    public function __construct(ChannelRepositoryInterface $channelRepository)
+    {
+        $this->channelRepository = $channelRepository;
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $channels =  $this->channelRepository->all();
+
+        return response()->json(['data' => $channels]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -32,12 +36,11 @@ class ChannelController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Channel $channel)
+    public function messages(Channel $channel)
     {
-        //
+        $messages = $this->channelRepository->messages($channel->id);
+
+        return response()->json(MessagesResource::collection($messages));
     }
 
     /**
